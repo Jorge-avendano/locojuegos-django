@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load static %}
+  {% block contenido %}    
+<div class="fondo-contacto flex-grow-1 d-flex flex-column">
+    
+    <!-- Cambiamos <main> por <div> y mt-5 por pt-5 --> 
+    <div id="contactanos" class="container pt-5 flex-grow-1">
+
+     <!-- Bienvenido -->    
+     <section class="text-center text-light py-2" >
+      <div class="container my-5">
+          <h1 class="display-4 fw-bold">Contáctanos</h1>
+          
+          <p class="lead">En Loco Juegos, estamos aquí para escucharte. Contáctanos para consultas, soporte o cualquier inquietud sobre tus juegos favoritos. 
+            ¡Tu próxima aventura comienza con un mensaje! </p>
+      </div>
+    </section>
+  
+    <section>
+         <!-- Formulario de contacto -->
+      <hr  class="d-flex w-80 mx-auto  py-5">
+    <div class="row mb-5">
+      <div class="col-md-6 ">
+          <div class="card p-4 shadow h-100">
+              <h4 class="mb-3 text-center">Envíanos un mensaje</h4>
+              <form >
+                  <div class="mb-3">
+                      <label for="name" class="form-label">Nombre:</label>
+                      <input type="text" class="form-control" placeholder="Escriba su nombre aquí"  id="name-contacto" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="email" class="form-label">Correo Electrónico:</label>
+                      <input type="email" class="form-control" placeholder="Example@locojuegos.com" id="email-contacto" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="message" class="form-label">Mensaje:</label>
+                      <textarea class="form-control" id="message" placeholder="Déjanos tu mensaje aquí"  rows="14" required></textarea>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <button id="contact-form" type="submit" class="btn btn-primary w-50">Enviar Mensaje</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+      <!-- Contacto rápido -->
+      <div class="col-md-6 text-center">
+          <h4>Contacto Rápido</h4>
+          <a href="https://wa.me/123456789" class="btn btn-outline-success my-2 w-50">WhatsApp</a>
+          <a href="https://discord.com/invite/ejemplo" class="btn btn-outline-primary my-2 w-50">Discord</a>
+          <hr>
+          <h4>Nuestra Ubicación</h4>
+          <p>Blvd. Plaza Mantaro, San Miguel 15088</p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d4639.738583778652!2d-77.08197607443707!3d-12.075170197422343!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1740157254226!5m2!1ses-419!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section> 
+  
+  <!-- Preguntas Frecuentes -->
+  <section  id="help" class="mt-5 py-5">
+      <h3 class="text-center">Preguntas Frecuentes</h3>
+      <hr  class="d-flex w-80 mx-auto  py-5">
+      <div class="accordion" id="faqAccordion">
+          <div class="accordion-item bg-dark border-secondary">
+              <h2 class="accordion-header">
+                  <button class="accordion-button bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                    ❓ ¿Cómo puedo devolver un juego comprado?
+                  </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">Puedes devolver un juego dentro de los primeros 14 días si no ha sido activado.</div>
+              </div>
+          </div>
+          <div class="accordion-item bg-dark border-secondary">
+              <h2 class="accordion-header">
+                  <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    🕒 ¿Cuánto tiempo tarda el soporte en responder?
+                  </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">Normalmente respondemos en menos de 24 horas.</div>
+              </div>
+          </div>
+      
+            <!-- Pregunta 1 -->
+            <div class="accordion-item bg-dark border-secondary">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                        📦 ¿Cuáles son los métodos de envío?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Ofrecemos envíos estándar y express a todo el país. Puedes elegir la opción al finalizar tu compra.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pregunta 2 -->
+            <div class="accordion-item bg-dark border-secondary">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                        💳 ¿Qué métodos de pago aceptan?
+                    </button>
+                </h2>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Aceptamos pagos con tarjetas de crédito/débito, PayPal y transferencias bancarias.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pregunta 3 -->
+            <div class="accordion-item bg-dark border-secondary">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                        🔄 ¿Cómo solicitar un reembolso?
+                    </button>
+                </h2>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Para solicitar un reembolso, contáctanos dentro de los primeros 7 días después de la compra con tu comprobante.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="awards" class="text-center mt-4">
+            <p>¿No encontraste lo que buscabas? <a href="#contactanos" class="text-warning">Contáctanos</a>.</p>
+        </div>
+       
+  </section>
+  
+  <!-- Testimonios -->
+  <section  class="mt-5 pb-5">
+      <h3 class="text-center">Lo que dicen nuestros clientes</h3>
+      <hr  class="d-flex w-80 mx-auto  py-5">
+      <div id="testimoniosCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <div class="text-center p-4">
+                      <p>"Excelente servicio y precios increíbles!"</p>
+                      <strong>- Juan Pérez</strong>
+                  </div>
+              </div>
+              <div class="carousel-item">
+                  <div class="text-center p-4">
+                      <p>"Compré un bundle de juegos y todo llegó perfecto."</p>
+                      <strong>- María López</strong>
+                  </div>
+              </div>
+              <div class="carousel-item">
+                <div class="text-center p-4">
+                    <p>"Gran variedad de juegos y atención rápida. 100% recomendado."</p>
+                    <strong>- Carlos Ramírez</strong>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="text-center p-4">
+                    <p>"Muy fácil de comprar y excelente soporte al cliente. Volveré a comprar aquí."</p>
+                    <strong>- Ana Torres</strong>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="text-center p-4">
+                    <p>"Me encantó la experiencia. Rápido, seguro y confiable. ¡Sigan así!"</p>
+                    <strong>- Diego Fernández</strong>
+                </div>
+              </div>
+              <div class="carousel-item">
+              <div class="text-center p-4">
+                    <p>"Encuentro los juegos que quiero al mejor precio. Servicio impecable."</p>
+                    <strong>- Laura Gómez</strong>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="text-center p-4">
+                    <p>"Siempre tienen las mejores ofertas y ediciones exclusivas. ¡Increíble!"</p>
+                    <strong>- Gabriela Sánchez</strong>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="text-center p-4">
+                    <p>"Atención personalizada y productos de calidad. Totalmente satisfecho."</p>
+                    <strong>- Fernando Rivas</strong>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="text-center p-4">
+                    <p>"No solo venden juegos, sino que también ofrecen recomendaciones geniales. ¡Gran sitio!"</p>
+                    <strong>- Sofía Herrera</strong>
+                </div>
+              </div>
+
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+    </section>
+    
+    </div> <!-- Cierre del div contactanos -->
+
+    <section class="help-section py-5">
+    
+    </section>
+    
+    <!-- Modal de Alerta -->
+        <div class="modal fade" id="alertModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center">"¡Ups! Parece que algo salió mal."</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body" id="alertMessage">
+                    <!-- Aquí se insertará el mensaje dinámico -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+{% endblock %}
+

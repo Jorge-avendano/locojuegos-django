@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="container text-center py-5 my-5" >
+    
+    <h2 class="mb-4">Resultados de búsqueda para: <span class="text-warning">"{{ query }}"</span></h2>
+    
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+           
+                {% for juego in productos %}
+                  <div class="col-md-4 d-flex">
+                      <div class="card bg-dark text-light border-secondary h-100">
+                          
+                            {% if juego.descuento > 0 %}
+                                <span class="position-absolute top-0 start-0 badge bg-danger fs-6 m-2 p-2">
+                                    -{{ juego.descuento }}%
+                                </span>
+                            {% endif %}
+
+                            {% if juego.imagen %}
+                                <img src="{{ juego.imagen.url }}" class="card-img-top object-fit-cover img-thumbnail"  alt="{{ juego.nombre }}" style="height: 400px; ">
+                            {% else %}
+                                <img src="{% static 'images/no-image.jpg' %}" class="card-img-top object-fit-cover img-thumbnail" alt="Sin imagen" style="height: 400px;">
+                            {% endif %}
+
+                          <div class="card-body d-flex flex-column">
+                              <h5 class="card-title fw-bold">{{ juego.nombre }}</h5>
+                              <p class="card-text text-secondary flex-grow-1">{{ juego.descripcion|truncatechars:80 }}</p>
+                              
+                              <div>
+                                  {% if juego.descuento > 0 %}
+                                      <div class="mb-2">
+                                          <span class="text-decoration-line-through text-muted me-2">S/ {{ juego.precio }}</span>
+                                          <span class="fs-4 fw-bold text-success">S/ {{ juego.precio_final }}</span>
+                                      </div>
+                                  {% else %}
+                                      <div class="mb-2 align-items-center">
+                                          <span class="fs-4 fw-bold text-light">S/ {{ juego.precio }}</span>
+                                      </div>
+                                  {% endif %}
+                              </div>
+
+                              <div class="card-footer d-flex justify-content-between align-items-center">
+                                  <div class="game-tags">
+                                    {% for etiqueta in juego.etiquetas.all %}
+                                        <span class="badge bg-{{ etiqueta.color }} me-1">{{ etiqueta.nombre }}</span>
+                                    {% empty %}
+                                        <span class="text-muted small">Sin etiquetas</span>
+                                    {% endfor %}                         
+                                  </div>
+                                <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+        {% empty %}
+            <div class="col-12 text-center py-5">
+                <h3 class="text-muted">No encontramos ningún juego llamado "{{ query }}" 😢</h3>
+                <p>Intenta buscar con otras palabras o revisa nuestro catálogo.</p>
+                <a href="{% url 'inicio' %}" class="btn btn-outline-primary mt-3">Volver al inicio</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

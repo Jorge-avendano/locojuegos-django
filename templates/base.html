@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loco Juegos - Tienda de Videojuegos Online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body min-vh-100 m-0 p-0>
+  
+    <!-- ***********************-->
+    <!--        Encabezado      -->
+    <!-- ***********************-->
+
+     <header>
+        <!-- Barra Navegadora -->
+        <nav class="navbar navbar-expand-sm bg-dark border-bottom border-body  fixed-top " data-bs-theme="dark">
+            <a class="navbar-brand text-light ms-2 fs-5" href="{% url 'inicio' %}">
+                <img src="{% static 'favicon.ico' %}" alt="Logo" width="30" height="30" class="d-inline-block mb-1">
+                Loco Juegos
+            </a>
+            <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="navbarOffcanvasLg" aria-labelledby="navbarOffcanvasLgLabel">
+
+                <div class="offcanvas-body p-1 ">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                      <form class="d-flex" role="search" method="GET" action="{% url 'buscar' %}">
+                        <input class="form-control me-2" type="search" placeholder="Buscar juego..." aria-label="Search" name="q" required>
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                      </form>
+
+
+
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Catálogo
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'playstation' %}">PlayStation</a></li>
+                          <li><a class="dropdown-item" href="{% url 'xbox' %}">Xbox</a></li>
+                          <li>
+                            <hr class="dropdown-divider">
+                          </li>
+                          <li><a class="dropdown-item" href="{% url 'nintendo' %}">Nintendo</a></li>
+                          <li><a class="dropdown-item" href="{% url 'pc' %}">Pc</a></li>
+                          <li>
+                            <hr class="dropdown-divider">
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ofertas' %}">Ofertas</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                      </li>
+                      
+                      <!-- ********************************************************* -->
+                      <!-- Panel para iniciar sesión como Admin o como usuario común -->
+                      <!-- ********************************************************* -->
+
+                          {% if user.is_authenticated %}
+                              
+                              <li class="nav-item">
+                                  <span class="nav-link text-warning fw-bold">Hola, {{ user.username }}</span>
+                              </li>
+
+                              {% if user.is_superuser %}
+                                  <li class="nav-item">
+                                      <a class="nav-link text-info" href="{% url 'admin:index' %}">Panel Admin</a>
+                                  </li>
+                              {% endif %}
+
+                              <li class="nav-item">
+                                  <form method="POST" action="{% url 'logout' %}" class="d-inline">
+                                      {% csrf_token %}
+                                      <button type="submit" class="btn btn-link nav-link text-danger text-decoration-none">Cerrar sesión</button>
+                                  </form>
+                              </li>
+
+                          {% else %}
+                              <li class="nav-item">
+                                  <a class="btn btn-outline-light ms-2" href="{% url 'login' %}">Iniciar Sesión</a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="btn btn-warning ms-2 fw-bold text-dark" href="{% url 'registro' %}">Registrarse</a>
+                              </li>
+                          {% endif %}
+                      
+                    </ul>
+                </div>  
+            </div>
+          </nav>
+    </header>
+          
+        <!-- ***********************-->
+        <!--       HERO DINAMICO    -->
+        <!-- ***********************-->
+
+    <main class="flex-grow-1 d-flex flex-column">
+        {% block contenido %}
+        {% endblock %}
+    </main>
+
+
+        <!-- ***********************-->
+        <!--        FOOTER          -->
+        <!-- ***********************-->
+
+       <!-- Remove the container if you want to extend the Footer to full width. -->
+       
+        <!-- Footer -->
+        <footer class="text-center text-white footer-fondo" style="background-color: #3f51b5">
+          <!-- Grid container -->
+          <div class="container">
+            <!-- Section: Links -->
+            <section class="mt-5">
+              <!-- Grid row-->
+              <div class="row text-center d-flex justify-content-center pt-5">
+                <!-- Grid column -->
+                <div class="col-md-2">
+                  <h6 class=" font-weight-bold">
+                    <a href="{% url 'inicio' %}" class="text-white">NOSOTROS</a>
+                  </h6>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a href="{% url 'ofertas' %}" class="text-white">Productos</a>
+                  </h6>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a href="{% url 'contacto' %}#awards" class="text-white">Comentarios</a>
+                  </h6>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a href="{% url 'contacto' %}#help" class="text-white">Ayuda</a>
+                  </h6>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a href="{% url 'contacto' %}" class="text-white">Contactanos</a>
+                  </h6>
+                </div>
+                <!-- Grid column -->
+              </div>
+              <!-- Grid row-->
+            </section>
+            <!-- Section: Links -->
+      
+            <hr class="my-5" />
+      
+            <!-- Section: Text -->
+            <section class="mb-5">
+              <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                  <p>
+                    Loco Juegos – Tu tienda online de videojuegos. Explora un catálogo completo 
+                    con los mejores títulos para PlayStation, Xbox, Nintendo y PC. Ofertas irresistibles, 
+                    novedades de la industria y un servicio confiable. ¡Vive tu pasión por los videojuegos con nosotros!
+                    
+                  </p>
+                </div>
+              </div>
+            </section>
+            <!-- Section: Text -->
+          </div>
+          <!-- Grid container -->
+
+          <!-- Redes Sociales -->
+          <div class="text-center mt-4">
+              <a href="https://facebook.com" target="_blank" class="mx-2"><i class="bi bi-facebook"></i></a>
+              <a href="https://wa.me/tu_numero" target="_blank" class="mx-2"><i class="bi bi-whatsapp"></i></a>
+              <a href="https://discord.com" target="_blank" class="mx-2"><i class="bi bi-discord"></i></a>
+              <a href="https://instagram.com" target="_blank" class="mx-2"><i class="bi bi-instagram"></i></a>
+              <a href="https://youtube.com" target="_blank" class="mx-2"><i class="bi bi-youtube"></i></a>
+          </div>
+      
+          <!-- Copyright -->
+          <div class="text-center p-3 mt-4" style="background-color: rgba(0, 0, 0, 0.2)">   
+            © 2025 Copyright:
+            <a class="text-white" href="{% url 'inicio' %}"
+               >Loco_Juegos.com</a
+              >
+          </div>
+          <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+    
+      <!-- End of .container -->
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>

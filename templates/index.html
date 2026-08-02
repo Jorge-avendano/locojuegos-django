@@ -1,0 +1,413 @@
+{% extends 'base.html' %}
+{% load static %}
+  {% block contenido %}        
+        <!-- ***********************-->
+        <!--       HERO DINAMICO    -->
+        <!-- ***********************-->
+
+      <main>
+        
+            <section>   
+                <div id="carousellocojuegos" class="carousel slide " data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carousellocojuegos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carousellocojuegos" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carousellocojuegos" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="3000">
+                        <img src="{% static 'images/god-of-war-ragnarok.jpg' %}" class="d-block w-100 vh-100 object-fit-cover"  alt="God-of-war-Ragnarok">
+                        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 p-4 rounded-3">
+                          <h5 class="fw-bold text-white">¡Bienvenido a Loco Juegos!</h5>
+                          <p class="text-white">Comienza tu aventura explorando nuestras diversas plataformas. 
+                            Ya sea que juegues en PC, Xbox, PlayStation o Nintendo, tenemos algo para ti. 
+                            ¡Descubre y juega a tus juegos favoritos ahora!</p>
+                          <a href="#plataformas" class="btn btn-outline-info">Explorar</a>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="3000">
+                        <img src="{% static 'images/cyber-punk.png' %}" class="d-block w-100 vh-100 object-fit-cover" alt="Cyber-Punk">
+                        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 p-4 rounded-3">
+                          <h5 class="fw-bold text-white">Juegos Destacados</h5>
+                          <p class="text-white">Conoce los títulos más populares y aclamados por la crítica. ¡Los juegos que no te puedes perder y que están marcando tendencia!</p>
+                          <a href="#destacados" class="btn btn-outline-info">Explorar</a>
+                        </div>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="3000">
+                        <img src="{% static 'images/elder-ring.jpg' %}" class="d-block w-100 vh-100 object-fit-cover" alt="Elder-Ring">
+                        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-25 p-4 rounded-3">
+                          <h5 class="fw-bold text-white">Ofertas Exclusivas</h5>
+                          <p class="text-white">¡No te pierdas los descuentos especiales! Aprovecha nuestras ofertas y hazte con los mejores juegos al mejor precio. ¡Solo por tiempo limitado!</p>
+                          <a href="#ofertas" class="btn btn-outline-info">Explorar</a>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousellocojuegos" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousellocojuegos" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+
+
+                  </div>
+            </section>
+        
+
+        <!-- ***********************-->
+        <!--        CATÁLOGO        -->
+        <!-- ***********************-->
+
+        <section  id="plataformas" class="py-5">
+          <div class="container">
+              <!-- PlayStation -->
+              <hr class="custom-hr-ps">
+              <div class="row align-items-center">
+                  <div class="col-lg-7">
+                      <h2 class="fw-bold text-light">Sumérgete en el Universo PlayStation  
+                          <span class="text-primary d-block">Donde los juegos cobran vida.</span>
+                      </h2>
+                      <p class="lead text-justify">
+                          Descubre mundos impresionantes, historias épicas y una jugabilidad que desafía los límites.  
+                          Desde intensas aventuras hasta emocionantes combates, cada juego es una experiencia única.  
+                          <strong>Explora nuestro catálogo y encuentra tu próxima gran aventura.</strong>
+                      </p>
+                      <a href="{% url 'playstation' %}" class="btn btn-outline-primary btn-lg mt-3">Explorar</a>
+                  </div>
+                  <div class="col-lg-5 text-center">
+                    <a href="{% url 'playstation' %}">
+                      <img src="{% static 'images/playstation-portada.jpg' %}" class="img-fluid custom-img-ps" alt="PlayStation Games">
+                    </a>
+                  </div>
+              </div>
+              <hr class="custom-hr-ps">
+              <hr class="custom-hr-xbox">
+              <!-- Xbox -->
+              <div class="row align-items-center flex-row-reverse">
+                  <div class="col-lg-7">
+                      <h2 class="fw-bold text-light">Potencia y Rendimiento en Xbox  
+                          <span class="text-success d-block">Siente la diferencia.</span>
+                      </h2>
+                      <p class="lead text-justify">
+                          Vive la nueva generación de juegos con gráficos asombrosos, rendimiento increíble y un ecosistema conectado.  
+                          <strong>Explora títulos épicos y sumérgete en experiencias inolvidables.</strong>
+                      </p>
+                      <a href="{% url 'xbox' %}" class="btn btn-outline-success btn-lg mt-3">Explorar</a>
+                  </div>
+                  <div class="col-lg-5 text-center">
+                    <a href="{% url 'xbox' %}">
+                      <img src="{% static 'images/xbox-portada.jpg' %}" class="img-fluid custom-img-xbox" alt="Xbox Games">
+                    </a>
+                  </div>
+              </div>
+              <hr class="custom-hr-xbox">
+              <hr class="custom-hr-nintendo">
+              <!-- Nintendo -->
+              <div class="row align-items-center">
+                  <div class="col-lg-7">
+                      <h2 class="fw-bold text-light">Diversión para Todos con Nintendo  
+                          <span class="text-danger d-block">Juega sin límites.</span>
+                      </h2>
+                      <p class="lead text-justify">
+                          Desde aventuras clásicas hasta innovadoras formas de jugar, Nintendo trae diversión sin igual para todas las edades.  
+                          <strong>Descubre los títulos más icónicos y sumérgete en la magia de Nintendo.</strong>
+                      </p>
+                      <a href="{% url 'nintendo' %}" class="btn btn-outline-danger btn-lg mt-3">Explorar</a>
+                  </div>
+                  <div class="col-lg-5 text-center">
+                    <a href="{% url 'nintendo' %}">
+                      <img src="{% static 'images/nintendo-portada.jpg' %}" class="img-fluid custom-img-nintendo" alt="Nintendo Games">
+                    </a>
+                  </div>
+              </div>
+              <hr class="custom-hr-nintendo">
+              <hr class="custom-hr-pc">
+              <!-- PC Gaming -->
+              <div class="row align-items-center flex-row-reverse">
+                  <div class="col-lg-7">
+                      <h2 class="fw-bold text-light">Experimenta el Poder del PC Gaming  
+                          <span class="text-info d-block">Donde la tecnología y los juegos se fusionan.</span>
+                      </h2>
+                      <p class="lead text-justify">
+                          Personaliza tu experiencia con gráficos ultrarrealistas, altas tasas de refresco y un mundo sin límites.  
+                          <strong>Explora nuestra colección y lleva tu juego al siguiente nivel.</strong>
+                      </p>
+                      <a href="{% url 'pc' %}" class="btn btn-outline-info btn-lg mt-3">Explorar</a>
+                  </div>
+                  <div class="col-lg-5 text-center">
+                    <a href="{% url 'pc' %}">
+                      <img src="{% static 'images/pc-portada.jpg' %}" class="img-fluid custom-img-pc" alt="PC Gaming">
+                    </a>
+                  </div>
+                  
+              </div>
+              <hr class="custom-hr-pc" id="destacados">
+          </div>
+      </section>
+      
+        <!-- /FIN CATÁLOGO -->
+        
+        <!-- ***********************-->
+        <!--      DESTACADOS        -->
+        <!-- ***********************-->
+
+        <section  class="d-flex w-50 mx-auto  py-2" > 
+            
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0 d-flex flex-column">
+                <img src="{% static 'images/god-of-war-ragnarok.jpg' %}" class="card-img-top  object-fit-cover h img-thumbnail" style="height: 300px;" alt="playstation-portada">
+                <div class="card-body text-left d-flex flex-column flex-grow-1">
+                  <h5 class="card-title fw-bold text-uppercase text-primary">God of War: Ragnarök</h5>
+                  <p class="card-text text-muted"style="text-align:justify;">
+                    Únete a Kratos y su hijo Atreus en God of War Ragnarök mientras se enfrentan a los dioses nórdicos y a los eventos del fin del mundo. 
+                    Con un combate visceral, una historia emocional y un mundo vasto por explorar, prepárate para una épica batalla por el destino de los reinos.
+                  </p>
+                  <a href="{% url 'playstation' %}#accion" class="btn btn-outline-primary fw-bold mt-auto">Explorar</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0 d-flex flex-column">
+                <img src="{% static 'images/tlou2-remastered.jpeg' %}" class="card-img-top object-fit-cover img-thumbnail" style="height: 300px;" alt="The Last of Us Part II">
+                <div class="card-body text-left d-flex flex-column flex-grow-1">
+                  <h5 class="card-title fw-bold text-uppercase text-primary">The Last of Us Part II</h5>
+                  <p class="card-text text-muted"style="text-align:justify;">Cinco años después de su peligroso viaje, Ellie y Joel intentan llevar una vida en paz. Sin embargo, 
+                    un evento trágico desencadena una búsqueda implacable de justicia y venganza. Explora un mundo brutal, con una narrativa envolvente 
+                    y mecánicas de sigilo y combate intensas.</p>
+                  <a href="{% url 'playstation' %}#destacados" class="btn btn-outline-primary fw-bold mt-auto">Explorar</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0 d-flex flex-column">
+                <img src="{% static 'images/haloinfinitexbox.webp' %}" class="card-img-top  object-fit-cover img-thumbnail" style="height: 300px;" alt="Halo Infinite">
+                <div class="card-body text-left d-flex flex-column flex-grow-1">
+                  <h5 class="card-title fw-bold text-uppercase text-success">Halo Infinite</h5>
+                  <p class="card-text text-muted"style="text-align:justify;">Enfréntate a la amenaza del Covenant y nuevos enemigos en Halo Infinite, la última entrega de la icónica saga de ciencia ficción. 
+                    Con un mundo abierto expansivo, intensas batallas y la vuelta de Master Chief, vive una historia épica llena de acción, exploración y heroísmo.</p>
+                  <a href="{% url 'xbox' %}#destacados" class="btn btn-outline-success fw-bold mt-auto">Explorar</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0 d-flex flex-column">
+                <img src="{% static 'images/xbox-starfield.jpg' %}" class="card-img-top  object-fit-cover img-thumbnail" style="height: 300px;" alt="Starfield">
+                <div class="card-body text-left d-flex flex-column flex-grow-1">
+                  <h5 class="card-title fw-bold text-uppercase text-success">Starfield</h5>
+                  <p class="card-text text-muted" style="text-align:justify;">Explora el vasto universo de Starfield, un RPG de ciencia ficción de los creadores de The Elder Scrolls y Fallout. 
+                    Crea tu propio capitán espacial, personaliza tu nave y descubre planetas desconocidos mientras te enfrentas a misterios cósmicos y 
+                    tomas decisiones que cambiarán tu destino.
+                  </p>
+                  <a href="{% url 'xbox' %}#destacados" class="btn btn-outline-success fw-bold mt-auto ">Explorar</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0 d-flex flex-column">
+                <img src="{% static 'images/nintendo-mario-odyssey.jpg' %}" class="card-img-top  object-fit-cover img-thumbnail" style="height: 300px;" alt="Super Mario Odyssey">
+                <div class="card-body text-left d-flex flex-column flex-grow-1">
+                  <h5 class="card-title fw-bold text-uppercase text-danger">Super Mario Odyssey</h5>
+                  <p class="card-text text-muted"style="text-align:justify;">Acompaña a Mario en su aventura por el mundo en Super Mario Odyssey. Salta entre reinos fantásticos, 
+                    resuelve puzles y enfrenta desafíos para rescatar a la princesa Peach y detener los planes malvados de Bowser, con la ayuda de Cappy, su nuevo amigo.</p>
+                  <a href="{% url 'nintendo' %}#destacados" class="btn btn-outline-danger fw-bold mt-auto">Explorar</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0 d-flex flex-column">
+                <img src="{% static 'images/nintendo-the-legend-of-zelda.jpg' %}" class="card-img-top  object-fit-cover img-thumbnail" style="height: 300px;" alt="he Legend of Zelda: Tears of the Kingdom">
+                <div class="card-body text-left d-flex flex-column flex-grow-1">
+                  <h5 class="card-title fw-bold text-uppercase text-danger">The Legend of Zelda: Tears of the Kingdom</h5>
+                  <p class="card-text text-muted"style="text-align:justify;">Embárcate en una nueva aventura épica con Link en Tears of the Kingdom. 
+                    Explora un vasto reino y sus cielos flotantes, resuelve misterios y enfréntate a enemigos imponentes para restaurar el equilibrio en Hyrule 
+                    y desvelar el secreto detrás de la amenaza que acecha el reino.</p>
+                  <a href="{% url 'nintendo' %}#destacados" class="btn btn-outline-danger fw-bold mt-auto">Explorar</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0 d-flex flex-column">
+                <img src="{% static 'images/pc-baldurs-gate.jpg' %}" class="card-img-top  object-fit-cover img-thumbnail" style="height: 300px;" alt="pc-portada">
+                <div class="card-body text-left d-flex flex-column flex-grow-1">
+                  <h5 class="card-title fw-bold text-uppercase text-info">Baldur's Gate 3</h5>
+                  <p class="card-text text-muted"style="text-align:justify;">Entra en el mundo de Baldur's Gate 3, un RPG basado en Dungeons & Dragons. 
+                    Crea tu personaje, toma decisiones morales profundas y lucha en intensos combates por turnos mientras te adentras en un relato épico 
+                    lleno de magia, intriga y aventura.
+                  </p>
+                  <a href="{% url 'pc' %}#destacados" class="btn btn-outline-info fw-bold mt-auto">Explorar</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0 d-flex flex-column">
+                <img src="{% static 'images/cyber-punk.png' %}" class="card-img-top  object-fit-cover img-thumbnail" style="height: 300px;" alt="pc-portada">
+                <div class="card-body text-left d-flex flex-column flex-grow-1">
+                  <h5 class="card-title fw-bold text-uppercase text-info">Cyberpunk 2077</h5>
+                  <p class="card-text text-muted"style="text-align:justify;">Sumérgete en el futuro distópico de Cyberpunk 2077. Juega como V, un mercenario en busca de inmortalidad 
+                    en la ciudad de Night City, donde la tecnología y la corrupción dominan cada rincón. Personaliza tu estilo, toma decisiones cruciales y enfrenta un mundo lleno de peligros y oportunidades.</p>
+                  <a href="{% url 'pc' %}#destacados" class="btn btn-outline-info  fw-bold mt-auto">Explorar</a>
+                </div>
+              </div>
+            </div>
+
+        </section>
+
+        <!-- /FIN DESTACADOS -->
+       
+        
+        <!-- ***********************-->
+        <!--   OFERTAS EXCLUSIVAS   -->
+        <!-- ***********************-->
+      <hr class="d-flex w-50 mx-auto  py-5" id="ofertas">
+      <section  class="d-flex w-100 my-5 flex-column offer-box">
+            <!-- BANNER PROMOCIONAL -->
+            <div class="container-fluid banner-container position-relative py-5 half-background w-75">
+              <div class="container position-relative text-center ">
+                <div class="row justify-content-center align-items-center position-relative ">
+                  
+                  <!-- Imagen Izquierda -->
+                  
+                    <img src="{% static 'images/god-of-war-banner-promocional.png' %}" class="promo-img promo-left d-none d-md-block " alt="God of War Banner">
+                  
+
+                  <!-- Offer Box (Texto) -->
+                  <div class="col-md-6 text-center p-4  elegant-box text-light rounded-3 shadow-lg position-relative w-50 ">
+                    <h2 class="fw-bold">🔥 Ofertas Exclusivas 🔥</h2>
+                    <p class="fs-5">No dejes pasar los mejores descuentos en juegos para todas las plataformas. ¡Aprovecha ahora y juega sin límites! 🎮💥</p>
+                    <a href="{% url 'ofertas' %}" class="btn btn-outline-warning btn-lg mt-3">Ver Ofertas</a>
+                  </div>
+            
+                  <!-- Imagen Derecha -->
+                   
+                    <img src="{% static 'images/mario-bros-banner-promocional.png' %}" class="promo-img promo-right d-none d-md-block" alt="Mario Bros Banner">
+                  
+                </div>
+              </div>
+            </div>
+            <!-- FIN BANNER PROMOCIONAL -->
+      
+
+          <!--   PROMOCIONES   -->
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-5">
+            <div class="col">
+              <div class="card h-100  border-0 d-flex flex-column">
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="{% static 'images/pc-baldurs-gate.jpg' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="1700" alt="Imagen 1">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{% static 'images/cyber-punk.png' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="1700" alt="Imagen 2">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{% static 'images/elder-ring.jpg' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="1700" alt="Imagen 3">
+                    </div>
+                  </div>
+                </div>
+                  <div class="card-body d-flex flex-column flex-grow-1">
+                      <h5 class="card-title">🎮 Juegos de PC 🔥</h5>
+                      <p class="card-text">Los mejores descuentos en títulos de PC. ¡Aprovecha y juega sin límites! 🚀</p>
+                      <a href="{% url 'pc' %}#ofertas" class="btn btn-primary w-100 mt-auto">Ver ofertas</a>
+                  </div>
+              </div>
+            </div>
+            
+            <div class="col">
+                <div class="card h-100  border-0 d-flex flex-column">
+
+                  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="{% static 'images/xbox-starfield.jpg' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="2000" alt="Imagen 1">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'images/xbox-forza-horizon.webp' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="2000" alt="Imagen 2">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'images/xbox-assasins-creed-valhala.jpg' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="2000" alt="Imagen 3">
+                      </div>
+                    </div>
+                  </div>
+
+                    <div class="card-body d-flex flex-column flex-grow-1">
+                        <h5 class="card-title">💚 Juegos de Xbox</h5>
+                        <p class="card-text">Descuentos en juegos para Xbox Series X|S y Xbox One. ¡No te los pierdas! ⚡</p>
+                        <a href="{% url 'xbox' %}#ofertas" class="btn btn-success w-100 mt-auto">Ver ofertas</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card h-100  border-0">
+
+                  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="{% static 'images/tlou2-remastered.jpeg' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="1500" alt="Imagen 1">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'images/ps-horizon-forbidden-west.jpg' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="1500" alt="Imagen 2">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'images/ps-the-witcher-3-complete-edition.jpg' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="1500" alt="Imagen 3">
+                      </div>
+                    </div>
+                  </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">🔵 Juegos de PlayStation</h5>
+                        <p class="card-text">Grandes títulos con precios rebajados para PS4 y PS5. ¡Corre antes de que se acaben! 🔥</p>
+                        <a href="{% url 'playstation' %}#ofertas" class="btn btn-primary w-100">Ver ofertas</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card h-100  border-0">
+                    
+                  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="{% static 'images/nintendo-metroid-dread.jpg' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="1000" alt="Imagen 1">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'images/nintendo-aventura-detective-pikachu-returns.jpg' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="1000" alt="Imagen 2">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{% static 'images/nintendo-mario-odyssey.jpg' %}" class="d-block w-100 card-img-top rounded-top" data-bs-interval="1000" alt="Imagen 3">
+                      </div>
+                    </div>
+                  </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">🍄 Juegos de Nintendo</h5>
+                        <p class="card-text">Ofertas irresistibles en juegos de Nintendo Switch. ¡Juega donde quieras! 🎊</p>
+                        <a href="{% url 'nintendo' %}#ofertas" class="btn btn-danger w-100">Ver ofertas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+          
+
+
+        </section>
+
+        
+        <!-- /FIN OFERTAS EXCLUSIVAS -->
+
+      </main>
+
+
+  {% endblock %}

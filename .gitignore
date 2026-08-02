@@ -1,0 +1,14 @@
+# Entornos virtuales
+myvenv/
+venv/
+env/
+
+#Base de datos de desarrollo
+db.sqlite3
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+
+# Archivos de carpeta media
+/productos/

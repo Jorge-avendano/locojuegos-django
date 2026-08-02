@@ -1,0 +1,435 @@
+
+/* ************** */
+/*    Estilos    */
+/* ************** */ 
+
+/* Estilos Generales */
+
+/* Cards */
+.game-tags .badge {
+  font-size: 0.50rem;
+  padding: 5px 8px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.card-footer {
+  background: none; /* Para mantener el fondo oscuro del card */
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Línea sutil */
+  padding: 10px 15px;
+}
+
+
+/* Estilos para el footer */
+.footer-fondo {
+  background: linear-gradient(-45deg, #0a0a0a, #14142b, #1c1c3c, #10101e);
+  background-size: 300% 300%;
+  animation: moverDegradado 5s ease infinite;
+}
+
+
+
+footer a {
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+footer a:hover {
+  color: #ff9800;
+}
+
+footer .fab {
+  color: white;
+  transition: transform 0.3s ease-in-out;
+}
+
+footer .fab:hover {
+  transform: scale(1.2);
+  color: #ff9800;
+}
+
+.card img {
+  height: 250px;
+  object-fit: cover;
+}
+
+/* Estilos para los cards */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.4);
+}
+
+
+/* Estilos por secciones */
+
+
+/* Página Inicio */
+
+/* Estilos generales para la sección del catálogo */
+#catálogo {
+  background-color: #121212;
+  padding: 60px 0;
+}
+
+#catálogo h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.custom-hr-ps,
+.custom-hr-xbox,
+.custom-hr-nintendo,
+.custom-hr-pc {
+  border: none;
+  height: 2px;
+  margin: 30px 0;
+}
+
+.custom-hr-ps {
+background: linear-gradient(to right, transparent, #007bff, transparent);
+
+}
+
+.custom-hr-xbox {
+  background: linear-gradient(to right, transparent, #00ff00, transparent);
+ 
+}
+
+.custom-hr-nintendo {
+  background: linear-gradient(to right, transparent, #f22f03, transparent);
+  
+  }
+
+  .custom-hr-pc {
+    background: linear-gradient(to right, transparent, #03b3ff, transparent);
+    
+    }
+
+/* Personalización de cada plataforma */
+.playstation h2 {
+  color: #0070D1;
+}
+
+.xbox h2 {
+  color: #107C10;
+}
+
+.nintendo h2 {
+  color: #E60012;
+}
+
+.pc h2 {
+  color: #FFCC00;
+}
+
+/* Estilo de imágenes */
+.custom-img-ps,
+.custom-img-xbox,
+.custom-img-nintendo,
+.custom-img-pc {
+  width: 100%; /* Para que se adapten al contenedor */
+  height: 350px; /* Ajusta según el diseño */
+  object-fit: cover; /* Mantiene la proporción y recorta si es necesario */
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-img-ps:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 20px rgba(8, 8, 243, 0.4);
+}
+.custom-img-xbox:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 20px rgba(48, 235, 6, 0.3);
+}
+.custom-img-nintendo:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 20px rgba(248, 1, 1, 0.4);
+}
+.custom-img-pc:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 10px 20px rgba(0, 187, 255, 0.3);
+}
+
+/* Botones personalizados */
+.btn-explorar {
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.playstation .btn-explorar {
+  background-color: #0070D1;
+  border: none;
+  color: white;
+}
+
+.xbox .btn-explorar {
+  background-color: #107C10;
+  border: none;
+  color: white;
+}
+
+.nintendo .btn-explorar {
+  background-color: #E60012;
+  border: none;
+  color: white;
+}
+
+.pc .btn-explorar {
+  background-color: #FFCC00;
+  border: none;
+  color: black;
+}
+
+/* Efecto hover en botones */
+.btn-explorar:hover {
+  filter: brightness(1.2);
+}
+
+
+
+/* Banner Promocional Inicio */
+.banner-container {
+  background: linear-gradient(-45deg, #1f1f1f, #292929); /* Fondo elegante */
+  animation: moverDegradado 10s  ease infinite;
+  overflow: visible;
+}
+
+.half-background {
+   background: linear-gradient(to bottom, transparent 50%, #0a0a0a 50%, #14142b, #1c1c3c, #10101e);
+  
+}
+
+/* caja de oferta (elegant-box) */
+
+.elegant-box {
+  transition: all 0.3s ease-in-out; /* Suaviza las transiciones */
+}
+
+.elegant-box:hover {
+  transform: translateY(-10px); /* Efecto de elevación al pasar el mouse */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+  background-color: #000000; /* Le da un color ligeramente más claro al fondo */
+}
+
+.elegant-box h2 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra en el texto */
+}
+
+.elegant-box .btn {
+  border-radius: 50px; /* Bordes redondeados para el botón */
+  transition: background-color 0.3s ease;
+}
+
+.elegant-box .btn:hover {
+  background-color: #f39c12; /* Color de fondo más cálido al pasar el mouse */
+  color: white; /* Color del texto al pasar el mouse */
+}
+
+
+
+
+  .promo-img {
+    width: 300px;
+    position: absolute;
+    top: -100px; /* Hace que sobresalga */
+    z-index: 2; /* Asegura que esté por encima del fondo */
+  }
+
+  .promo-left {
+    width: 400px; /* Tamaño ajustable */
+    left: -130px; /* Posiciona la imagen izquierda fuera del contenedor */
+    top:-80px;
+  }
+
+  .promo-right {
+    width: 550px; /* Tamaño ajustable */
+    right: -200px; /* Posiciona la imagen derecha fuera del contenedor */
+    top: -50px;
+    
+  }
+
+
+  .offer-box {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+  }
+
+/* Play-Station */
+
+/* Seccion Ofertas */
+.bundle-offers {
+    background: linear-gradient(135deg, #1a1a1a, #121212); /* Fondo con degradado sutil */
+    padding: 60px 20px;
+    border-radius: 16px; /* Bordes redondeados */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Sombra elegante */
+    border: 2px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animación de resplandor en los bordes */
+.bundle-offers::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 69, 0, 0.2));
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+}
+
+
+
+/* Efecto de hover en los cards */
+.bundle-offers .card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bundle-offers .card:hover {
+    transform: translateY(-20px);
+    box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.15);
+}
+
+/* Imágenes de los cards */
+.bundle-offers .card img {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+/* Cuerpo del card */
+.bundle-offers .card-body {
+    text-align: center;
+}
+
+/* Botón elegante */
+.bundle-offers .btn {
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.bundle-offers .btn:hover {
+    background: #ffcc00;
+    color: #121212;
+}
+
+
+/* Fondos paginas */
+.fondo-contacto,
+.fondo-pc,
+.fondo-ps,
+.fondo-xbox,
+.fondo-nintendo,
+.fondo-oferta {
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+
+/* imágenes de fondo */
+.fondo-contacto {
+    background-image: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)), url('../images/fondo-4k-games.jpg');
+}
+
+.fondo-pc {
+    background-image: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)), url('../images/unnamed.jpg');
+}
+
+.fondo-ps {
+  background-image: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)), url('../images/ps-background.jpg');
+}
+
+.fondo-xbox {
+  background-image: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)), url('../images/xbox-background-2.jpg');
+}
+
+.fondo-nintendo {
+  background-image: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)), url('../images/nintendo-background-3.jpg');
+}
+
+.fondo-oferta {
+  background-image: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)), url('../images/ofertas-background.jpg');
+}
+
+
+
+
+/* ************************************* */
+/* Responsividad para pantallas pequeñas */
+/* ************************************* */
+
+/* Hacerlas más pequeñas en pantallas medianas */
+
+/* Página Inicio */
+/* Imagenes del Banner Promocional en Inicio */
+  @media (max-width: 992px) {
+    .promo-left {
+      width: 40%; /* Tamaño ajustable */
+      left: -50px; /* Posiciona la imagen izquierda fuera del contenedor */
+      top:180px;
+    }
+  
+    .promo-right {
+      width: 60%; /* Tamaño ajustable */
+      right: -100px; /* Posiciona la imagen derecha fuera del contenedor */
+      top: 180px;
+      
+    }
+  }
+
+/* Hacerlas aún más pequeñas en móviles */
+  @media (max-width: 768px) {
+    .promo-left {
+      width: 50%; /* Tamaño ajustable */
+      left: -130px; /* Posiciona la imagen izquierda fuera del contenedor */
+      top:180px;
+    }
+  
+    .promo-right {
+      width: 60%; /* Tamaño ajustable */
+      right: -102px; /* Posiciona la imagen derecha fuera del contenedor */
+      top: 230px;
+      
+    }
+  }
+
+
+
+
+
+
+/* ******************* */
+/* Animaciones Sutiles */
+/* ******************* */
+
+
+/* Fondo del footer */
+  @keyframes moverDegradado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }  
+
+
+/* fondo de banner promocional en Inicio*/
+  @keyframes moverDegradado {
+    0% { background-position: 0% 100%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 100%; }
+  }

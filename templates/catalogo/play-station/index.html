@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+{% load static %}
+  {% block contenido %}
+  <div class="fondo-ps">    
+    
+
+      <!-- Bienvenido -->
+      <section class="text-center text-light py-5" >
+        <div class="container my-5">
+          <h1 class="display-4 fw-bold">Explora el mundo de PlayStation</h1>
+          <p class="lead">Descubre los mejores títulos, ofertas y bundles exclusivos.</p>
+          <a href="#destacados" class="btn btn-outline-primary btn-lg">Ver Juegos</a>
+        </div>
+      </section>
+
+        <!-- Destacados -->
+          <section id="destacados" class="container mt-5">
+              <hr id="destacados" class="d-flex w-75 mx-auto  py-5">
+              <h2 class="text-center text-light mb-4">Juegos Destacados</h2>
+
+              <div class="row row-cols-1 row-cols-md-4 g-4 mb-5">
+                  {% for juego in destacados %}
+                        <div class="col-md-4 d-flex">
+                            <div class="card bg-dark text-light border-secondary h-100">
+                                
+                                  {% if juego.descuento > 0 %}
+                                      <span class="position-absolute top-0 start-0 badge bg-danger fs-6 m-2 p-2">
+                                          -{{ juego.descuento }}%
+                                      </span>
+                                  {% endif %}
+
+                                  {% if juego.imagen %}
+                                      <img src="{{ juego.imagen.url }}" class="card-img-top object-fit-cover img-thumbnail"  alt="{{ juego.nombre }}" style="height: 400px; ">
+                                  {% else %}
+                                      <img src="{% static 'images/no-image.jpg' %}" class="card-img-top object-fit-cover img-thumbnail" alt="Sin imagen" style="height: 400px;">
+                                  {% endif %}
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">{{ juego.nombre }}</h5>
+                                    <p class="card-text text-secondary flex-grow-1">{{ juego.descripcion|truncatechars:80 }}</p>
+                                    
+                                    <div class="text-center">
+                                        {% if juego.descuento > 0 %}
+                                            <div class="mb-2">
+                                                <span class="text-decoration-line-through text-muted me-2">S/ {{ juego.precio }}</span>
+                                                <span class="fs-4 fw-bold text-success">S/ {{ juego.precio_final }}</span>
+                                            </div>
+                                        {% else %}
+                                            <div class="mb-2">
+                                                <span class="fs-4 fw-bold text-light">S/ {{ juego.precio }}</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="card-footer d-flex justify-content-between align-items-center">
+                                        <div class="game-tags">
+                                          {% for etiqueta in juego.etiquetas.all %}
+                                              <span class="badge bg-{{ etiqueta.color }} me-1">{{ etiqueta.nombre }}</span>
+                                          {% empty %}
+                                              <span class="text-muted small">Sin etiquetas</span>
+                                          {% endfor %}                         
+                                        </div>
+                                      <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                          {% empty %}
+                            <div class="col-12 text-center py-5">
+                                <p class="fs-5 text-muted">Aún no hay videojuegos registrados en esta categoría.</p>
+                            </div>
+
+                  {% endfor %}  
+              </div>
+          </section>
+
+
+        <!-- Ofertas -->
+          <section id="ofertas" class="container bundle-offers py-5 my-5">
+              <h3 class="mb-4 text-center text-danger">🔥 Grandes Ofertas</h3>
+
+              <div class="row row-cols-1 row-cols-md-4 g-4 mb-5">
+                  {% for juego in ofertas %}
+                        <div class="col-md-4 d-flex">
+                            <div class="card bg-dark text-light border-secondary h-100">
+                                
+                                  {% if juego.descuento > 0 %}
+                                      <span class="position-absolute top-0 start-0 badge bg-danger fs-6 m-2 p-2">
+                                          -{{ juego.descuento }}%
+                                      </span>
+                                  {% endif %}
+
+                                  {% if juego.imagen %}
+                                      <img src="{{ juego.imagen.url }}" class="card-img-top object-fit-cover img-thumbnail"  alt="{{ juego.nombre }}" style="height: 400px; ">
+                                  {% else %}
+                                      <img src="{% static 'images/no-image.jpg' %}" class="card-img-top object-fit-cover img-thumbnail" alt="Sin imagen" style="height: 400px;">
+                                  {% endif %}
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">{{ juego.nombre }}</h5>
+                                    <p class="card-text text-secondary flex-grow-1">{{ juego.descripcion|truncatechars:80 }}</p>
+                                    
+                                    <div>
+                                        {% if juego.descuento > 0 %}
+                                            <div class="mb-2">
+                                                <span class="text-decoration-line-through text-muted me-2">S/ {{ juego.precio }}</span>
+                                                <span class="fs-4 fw-bold text-success">S/ {{ juego.precio_final }}</span>
+                                            </div>
+                                        {% else %}
+                                            <div class="mb-2">
+                                                <span class="fs-4 fw-bold text-light">S/ {{ juego.precio }}</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="card-footer d-flex justify-content-between align-items-center">
+                                        <div class="game-tags">
+                                          {% for etiqueta in juego.etiquetas.all %}
+                                              <span class="badge bg-{{ etiqueta.color }} me-1">{{ etiqueta.nombre }}</span>
+                                          {% empty %}
+                                              <span class="text-muted small">Sin etiquetas</span>
+                                          {% endfor %}                         
+                                        </div>
+                                      <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                          {% empty %}
+                            <p class="text-muted">No hay ofertas en PC en este momento.</p>
+
+                  {% endfor %}  
+              </div>
+
+          </section>
+
+
+
+
+
+
+
+
+        <!-- SECCIÓN ACCIÓN-->
+          <section id="accion" class="container my-5">
+                <h2 class="text-center text-light mb-4">🎮 Acción 🔥</h2>
+                <div class="row row-cols-1 row-cols-md-4 g-4 mb-5">
+                    {% for juego in accion %}
+                        <div class="col-md-4 d-flex">
+                            <div class="card bg-dark text-light border-secondary h-100">
+                                
+                                  {% if juego.descuento > 0 %}
+                                      <span class="position-absolute top-0 start-0 badge bg-danger fs-6 m-2 p-2">
+                                          -{{ juego.descuento }}%
+                                      </span>
+                                  {% endif %}
+
+                                  {% if juego.imagen %}
+                                      <img src="{{ juego.imagen.url }}" class="card-img-top object-fit-cover img-thumbnail"  alt="{{ juego.nombre }}" style="height: 400px; ">
+                                  {% else %}
+                                      <img src="{% static 'images/no-image.jpg' %}" class="card-img-top object-fit-cover img-thumbnail" alt="Sin imagen" style="height: 400px;">
+                                  {% endif %}
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">{{ juego.nombre }}</h5>
+                                    <p class="card-text text-secondary flex-grow-1">{{ juego.descripcion|truncatechars:80 }}</p>
+                                    
+                                    <div class="text-center">
+                                        {% if juego.descuento > 0 %}
+                                            <div class="mb-2">
+                                                <span class="text-decoration-line-through text-muted me-2">S/ {{ juego.precio }}</span>
+                                                <span class="fs-4 fw-bold text-success">S/ {{ juego.precio_final }}</span>
+                                            </div>
+                                        {% else %}
+                                            <div class="mb-2">
+                                                <span class="fs-4 fw-bold text-light">S/ {{ juego.precio }}</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="card-footer d-flex justify-content-between align-items-center">
+                                        <div class="game-tags">
+                                          {% for etiqueta in juego.etiquetas.all %}
+                                              <span class="badge bg-{{ etiqueta.color }} me-1">{{ etiqueta.nombre }}</span>
+                                          {% empty %}
+                                              <span class="text-muted small">Sin etiquetas</span>
+                                          {% endfor %}                         
+                                        </div>
+                                      <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                          {% empty %}
+                            <div class="col-12 text-center py-5">
+                                <p class="fs-5 text-muted">Aún no hay videojuegos registrados en esta categoría.</p>
+                            </div>
+
+                    {% endfor %}  
+                
+              
+                </div>
+          </section>
+
+
+        <!-- SECCIÓN AVENTURA RPG-->
+          <section id="aventura" class="container my-5">
+                <h2 class="text-center text-light mb-4">🎮 Aventura - RPG 🔥</h2>
+                <div class="row row-cols-1 row-cols-md-4 g-4 mb-5">
+                    {% for juego in aventura %}
+                        <div class="col-md-4 d-flex">
+                            <div class="card bg-dark text-light border-secondary h-100">
+                                
+                                  {% if juego.descuento > 0 %}
+                                      <span class="position-absolute top-0 start-0 badge bg-danger fs-6 m-2 p-2">
+                                          -{{ juego.descuento }}%
+                                      </span>
+                                  {% endif %}
+
+                                  {% if juego.imagen %}
+                                      <img src="{{ juego.imagen.url }}" class="card-img-top object-fit-cover img-thumbnail"  alt="{{ juego.nombre }}" style="height: 400px; ">
+                                  {% else %}
+                                      <img src="{% static 'images/no-image.jpg' %}" class="card-img-top object-fit-cover img-thumbnail" alt="Sin imagen" style="height: 400px;">
+                                  {% endif %}
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">{{ juego.nombre }}</h5>
+                                    <p class="card-text text-secondary flex-grow-1">{{ juego.descripcion|truncatechars:80 }}</p>
+                                    
+                                    <div class="text-center">
+                                        {% if juego.descuento > 0 %}
+                                            <div class="mb-2">
+                                                <span class="text-decoration-line-through text-muted me-2">S/ {{ juego.precio }}</span>
+                                                <span class="fs-4 fw-bold text-success">S/ {{ juego.precio_final }}</span>
+                                            </div>
+                                        {% else %}
+                                            <div class="mb-2">
+                                                <span class="fs-4 fw-bold text-light">S/ {{ juego.precio }}</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="card-footer d-flex justify-content-between align-items-center">
+                                        <div class="game-tags">
+                                          {% for etiqueta in juego.etiquetas.all %}
+                                              <span class="badge bg-{{ etiqueta.color }} me-1">{{ etiqueta.nombre }}</span>
+                                          {% empty %}
+                                              <span class="text-muted small">Sin etiquetas</span>
+                                          {% endfor %}                         
+                                        </div>
+                                      <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                          {% empty %}
+                            <div class="col-12 text-center py-5">
+                                <p class="fs-5 text-muted">Aún no hay videojuegos registrados en esta categoría.</p>
+                            </div>
+
+                    {% endfor %}  
+                
+              
+                </div>
+          </section>
+        
+
+        <!-- SECCIÓN DEPORTE-->
+          <section id="deporte" class="container my-5">
+                <h2 class="text-center text-light mb-4">🎮 Deportes 🔥</h2>
+                <div class="row row-cols-1 row-cols-md-4 g-4 mb-5">
+                    {% for juego in deportes %}
+                        <div class="col-md-4 d-flex">
+                            <div class="card bg-dark text-light border-secondary h-100">
+                                
+                                  {% if juego.descuento > 0 %}
+                                      <span class="position-absolute top-0 start-0 badge bg-danger fs-6 m-2 p-2">
+                                          -{{ juego.descuento }}%
+                                      </span>
+                                  {% endif %}
+
+                                  {% if juego.imagen %}
+                                      <img src="{{ juego.imagen.url }}" class="card-img-top object-fit-cover img-thumbnail"  alt="{{ juego.nombre }}" style="height: 400px; ">
+                                  {% else %}
+                                      <img src="{% static 'images/no-image.jpg' %}" class="card-img-top object-fit-cover img-thumbnail" alt="Sin imagen" style="height: 400px;">
+                                  {% endif %}
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">{{ juego.nombre }}</h5>
+                                    <p class="card-text text-secondary flex-grow-1">{{ juego.descripcion|truncatechars:80 }}</p>
+                                    
+                                    <div class="text-center">
+                                        {% if juego.descuento > 0 %}
+                                            <div class="mb-2">
+                                                <span class="text-decoration-line-through text-muted me-2">S/ {{ juego.precio }}</span>
+                                                <span class="fs-4 fw-bold text-success">S/ {{ juego.precio_final }}</span>
+                                            </div>
+                                        {% else %}
+                                            <div class="mb-2">
+                                                <span class="fs-4 fw-bold text-light">S/ {{ juego.precio }}</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="card-footer d-flex justify-content-between align-items-center">
+                                        <div class="game-tags">
+                                          {% for etiqueta in juego.etiquetas.all %}
+                                              <span class="badge bg-{{ etiqueta.color }} me-1">{{ etiqueta.nombre }}</span>
+                                          {% empty %}
+                                              <span class="text-muted small">Sin etiquetas</span>
+                                          {% endfor %}                         
+                                        </div>
+                                      <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                          {% empty %}
+                            <div class="col-12 text-center py-5">
+                                <p class="fs-5 text-muted">Aún no hay videojuegos registrados en esta categoría.</p>
+                            </div>
+
+                    {% endfor %}  
+                
+              
+                </div>
+          </section>
+          
+  
+      
+      <!-- Modal open -->
+        <!-- Modal Bootstrap -->
+        <div class="modal fade" id="compraModal" tabindex="-1" aria-hidden="true" >
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">¡Sólo falta un paso más!</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                  </div>
+                  <div class="modal-body">
+                      <form id="formCompra">
+
+                          <div class="mb-3">
+                              <label for="nombre" class="form-label">Nombre y Apellidos</label>
+                              <input type="text" class="form-control" placeholder="Nombre completo"  id="name" required>
+                          </div>
+                          <div class="mb-3">
+                              <label for="correo" class="form-label">Correo Electrónico</label>
+                              <input type="email" class="form-control" placeholder="example@locojuegos.com" id="email" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad" placeholder="0" min="1">
+                          </div>
+                  
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-success" id="finalizarCompra">Finalizar Compra</button>
+                  </div>
+              </div>
+          </div>
+        </div>    
+
+{% endblock %} 
+
