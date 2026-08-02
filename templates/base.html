@@ -65,6 +65,20 @@
                         <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
                       </li>
                       
+                      <li class="nav-item me-3">
+                          <a class="nav-link text-light position-relative" href="{% url 'ver_carrito' %}">
+                              🛒 Carrito
+                              {% if request.session.carrito %}
+                                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                      {{ request.session.carrito.keys|length }}
+                                  </span>
+                              {% endif %}
+                          </a>
+                      </li>
+
+
+
+
                       <!-- ********************************************************* -->
                       <!-- Panel para iniciar sesión como Admin o como usuario común -->
                       <!-- ********************************************************* -->

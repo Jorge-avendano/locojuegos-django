@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
   {% block contenido %}    
-<div class="fondo-pc mt-5">  
+<div class="fondo-pc mt-5"> 
  
       <!-- Bienvenido -->
           <section class="text-center text-light py-5 mt-5" >
@@ -59,7 +59,7 @@
                                               <span class="text-muted small">Sin etiquetas</span>
                                           {% endfor %}                         
                                         </div>
-                                      <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                                      <a href="{% url 'Add' juego.id %}" class="btn btn-outline-light btn-comprar">Comprar</a>
                                     </div>
 
                                 </div>
@@ -122,7 +122,7 @@
                                               <span class="text-muted small">Sin etiquetas</span>
                                           {% endfor %}                         
                                         </div>
-                                      <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                                      <a href="{% url 'Add' juego.id %}" class="btn btn-outline-light btn-comprar">Comprar</a>
                                     </div>
 
                                 </div>
@@ -189,7 +189,7 @@
                                               <span class="text-muted small">Sin etiquetas</span>
                                           {% endfor %}                         
                                         </div>
-                                      <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                                      <a href="{% url 'Add' juego.id %}" class="btn btn-outline-light btn-comprar">Comprar</a>
                                     </div>
 
                                 </div>
@@ -253,7 +253,7 @@
                                               <span class="text-muted small">Sin etiquetas</span>
                                           {% endfor %}                         
                                         </div>
-                                      <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                                      <a href="{% url 'Add' juego.id %}" class="btn btn-outline-light btn-comprar">Comprar</a>
                                     </div>
 
                                 </div>
@@ -317,7 +317,7 @@
                                               <span class="text-muted small">Sin etiquetas</span>
                                           {% endfor %}                         
                                         </div>
-                                      <button class="btn btn-outline-light btn-comprar">Comprar</button>
+                                      <a href="{% url 'Add' juego.id %}" class="btn btn-outline-light btn-comprar">Comprar</a>
                                     </div>
 
                                 </div>
@@ -335,43 +335,7 @@
                 </div>
           </section>
           
-
-    
-
-      <!-- Modal open -->
-        <!-- Modal Bootstrap -->
-        <div class="modal fade" id="compraModal" tabindex="-1" aria-hidden="true" >
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title">¡Sólo falta un paso más!</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                  </div>
-                  <div class="modal-body">
-                      <form id="formCompra">
-
-                          <div class="mb-3">
-                              <label for="nombre" class="form-label">Nombre y Apellidos</label>
-                              <input type="text" class="form-control" placeholder="Nombre completo"  id="name" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="correo" class="form-label">Correo Electrónico</label>
-                              <input type="email" class="form-control" placeholder="example@locojuegos.com" id="email" required>
-                          </div>
-                          <div class="mb-3">
-                            <label for="cantidad" class="form-label">Cantidad</label>
-                            <input type="number" class="form-control" id="cantidad" placeholder="0" min="1">
-                          </div>
-                  
-                      </form>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                      <button type="submit" class="btn btn-success" id="finalizarCompra">Finalizar Compra</button>
-                  </div>
-              </div>
-          </div>
-        </div>
-      
-  {% endblock %}
+ </div>
+     
+{% endblock %}
 

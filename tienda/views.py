@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+
+from .carrito import Carrito
 
 
 from .models import Producto
@@ -131,3 +134,46 @@ def registro(request):
         form = UserCreationForm()
         
     return render(request, 'registro/index.html', {'form': form})
+
+# Manejo del carrito de compras
+def agregar_producto(request, producto_id):
+    # Instanciar
+    carrito = Carrito(request)
+    # Buscamos el producto en la base de datos
+    producto = Producto.objects.get(id=producto_id)
+    
+    carrito.agregar(producto)
+    
+    # Redirigimos al usuario a la misma página donde estaba
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def eliminar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(id=producto_id)
+    carrito.eliminar(producto)
+    return redirect('ver_carrito') 
+
+def limpiar_carrito(request):
+    carrito = Carrito(request)
+    carrito.limpiar()
+    return redirect('ver_carrito')
+
+def ver_carrito(request):
+    # Traemos la mochila de la sesión actual
+    carrito = request.session.get('carrito', {})
+    
+    # Sumamos los precios de todos los productos que están adentro
+    total = sum(item['acumulado'] for item in carrito.values())
+    
+    # Enviamos los datos a una nueva plantilla
+    return render(request, 'carrito/index.html', {
+        'carrito': carrito,
+        'total': total
+    })
+
+def restar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(id=producto_id)
+    carrito.restar(producto)
+    return redirect('ver_carrito')
+
