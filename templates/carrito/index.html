@@ -57,7 +57,7 @@
             <a href="{% url 'CLS' %}" class="btn btn-outline-danger">Vaciar Carrito</a>
             
             {% if user.is_authenticated %}
-                <button class="btn btn-success fw-bold px-5">Proceder al Pago</button>
+                <a href="{% url 'procesar_pago' %}" class="btn btn-success fw-bold px-5">Proceder al Pago</a>
             {% else %}
                 <a href="{% url 'login' %}?next={% url 'ver_carrito' %}" class="btn btn-warning fw-bold px-5 text-dark">
                     Inicia Sesión para Pagar

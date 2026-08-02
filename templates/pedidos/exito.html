@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<div class="container my-5 py-5 flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+    <div class="card bg-dark text-light border-success p-4 shadow-lg" style="max-width: 550px; width: 100%;">
+        <div class="card-body">
+            <h1 class="display-1 text-success mb-3">🎉</h1>
+            <h2 class="fw-bold mb-3">¡Gracias por tu compra, {{ request.user.username }}!</h2>
+            <p class="text-muted fs-5">Tu orden <strong>#{{ pedido.id }}</strong> ha sido procesada con éxito.</p>
+            
+            <hr class="border-secondary my-4">
+
+            <div class="text-start mb-4">
+                <h5 class="fw-bold text-warning mb-3">Resumen del Pedido:</h5>
+                <ul class="list-group list-group-flush bg-dark text-light">
+                    {% for detalle in pedido.detalles.all %}
+                        <li class="list-group-item bg-dark text-light d-flex justify-content-between border-secondary">
+                            <span>{{ detalle.cantidad }}x {{ detalle.producto.nombre }}</span>
+                            <span class="text-success fw-bold">S/ {{ detalle.precio }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="d-flex justify-content-between mt-3 px-3 fs-5 fw-bold">
+                    <span>Total Pagado:</span>
+                    <span class="text-success">S/ {{ pedido.total }}</span>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <a href="{% url 'inicio' %}" class="btn btn-primary fw-bold">Seguir Comprando</a>
+                <a href="{% url 'mis_pedidos' %}" class="btn btn-outline-light">Ver Mi Historial de Pedidos</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

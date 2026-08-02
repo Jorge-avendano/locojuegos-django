@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from .models import DetallePedido, Pedido, Producto
 
 from .carrito import Carrito
 
@@ -176,4 +178,45 @@ def restar_producto(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     carrito.restar(producto)
     return redirect('ver_carrito')
+
+# Detalle Factura
+@login_required(login_url='login')
+def procesar_pago(request):
+  carrito = Carrito(request)
+  carrito_dict = request.session.get('carrito', {})
+
+  # Si el carrito está vacío, no hay nada que procesar
+  if not carrito_dict:
+    return redirect('ver_carrito')
+
+  # 1. Calculamos el total
+  total = sum(item['acumulado'] for item in carrito_dict.values())
+
+  # 2. Creamos el registro principal en la tabla Pedido
+  pedido = Pedido.objects.create(
+      usuario=request.user, total=total, completado=True
+  )
+
+  # 3. Guardamos cada ítem en la tabla DetallePedido
+  for item in carrito_dict.values():
+    producto = Producto.objects.get(id=item['producto_id'])
+    DetallePedido.objects.create(
+        pedido=pedido,
+        producto=producto,
+        precio=item['precio_final'],
+        cantidad=item['cantidad'],
+    )
+
+  # 4. Vaciamos la mochila temporal (sesión)
+  carrito.limpiar()
+
+  # 5. Redirigimos a la pantalla de éxito mandando el ID del pedido
+  return render(request, 'pedidos/exito.html', {'pedido': pedido})
+
+
+@login_required(login_url='login')
+def mis_pedidos(request):
+  # Traemos todos los pedidos que le pertenecen a este usuario logueado
+  pedidos = Pedido.objects.filter(usuario=request.user).order_by('-fecha')
+  return render(request, 'pedidos/mis_pedidos.html', {'pedidos': pedidos})
 

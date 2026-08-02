@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<div class="container my-5 py-5 flex-grow-1">
+    <h2 class="fw-bold mb-4">Mis Compras Realizadas 🎮</h2>
+
+    {% if pedidos %}
+        <div class="accordion" id="accordionPedidos">
+            {% for pedido in pedidos %}
+                <div class="accordion-item bg-dark text-light border-secondary mb-3">
+                    <h2 class="accordion-header" id="heading{{ pedido.id }}">
+                        <button class="accordion-button collapsed bg-dark text-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ pedido.id }}">
+                            <div class="d-flex justify-content-between w-100 me-3 align-items-center">
+                                <span><strong>Orden #{{ pedido.id }}</strong> - {{ pedido.fecha|date:"d/m/Y H:i" }}</span>
+                                <span class="badge bg-success fs-6">S/ {{ pedido.total }}</span>
+                            </div>
+                        </button>
+                    </h2>
+                    <div id="collapse{{ pedido.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionPedidos">
+                        <div class="accordion-body">
+                            <ul class="list-group list-group-flush">
+                                {% for detalle in pedido.detalles.all %}
+                                    <li class="list-group-item bg-dark text-light border-secondary d-flex justify-content-between">
+                                        <span>{{ detalle.cantidad }}x {{ detalle.producto.nombre }}</span>
+                                        <span>S/ {{ detalle.precio }} c/u</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-5">
+            <h4 class="text-muted mb-3">Aún no has realizado ninguna compra.</h4>
+            <a href="{% url 'inicio' %}" class="btn btn-primary">Ir a la Tienda</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

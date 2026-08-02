@@ -84,7 +84,11 @@
                       <!-- ********************************************************* -->
 
                           {% if user.is_authenticated %}
-                              
+                          
+                              <li class="nav-item">
+                                  <a class="nav-link text-light ms-2" href="{% url 'mis_pedidos' %}">Mis Compras</a>
+                              </li>
+
                               <li class="nav-item">
                                   <span class="nav-link text-warning fw-bold">Hola, {{ user.username }}</span>
                               </li>
