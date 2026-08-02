@@ -30,4 +30,5 @@ urlpatterns = [
     # Rutas de compra e historial
     path('procesar-pago/', views.procesar_pago, name='procesar_pago'),
     path('mis-pedidos/', views.mis_pedidos, name='mis_pedidos'),
+    path('pago-exitoso/<int:pedido_id>/', views.pago_exitoso, name='pago_exitoso'),
 ]

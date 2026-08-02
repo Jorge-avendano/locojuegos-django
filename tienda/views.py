@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+import json
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
@@ -7,8 +9,6 @@ from .models import DetallePedido, Pedido, Producto
 
 from .carrito import Carrito
 
-
-from .models import Producto
 
 def inicio(request):
     # Traemos todos los productos
@@ -182,41 +182,58 @@ def restar_producto(request, producto_id):
 # Detalle Factura
 @login_required(login_url='login')
 def procesar_pago(request):
-  carrito = Carrito(request)
-  carrito_dict = request.session.get('carrito', {})
+  if request.method == 'POST':
+    carrito = Carrito(request)
+    carrito_dict = request.session.get('carrito', {})
 
-  # Si el carrito está vacío, no hay nada que procesar
-  if not carrito_dict:
-    return redirect('ver_carrito')
+    # Si el carrito está vacío, no hay nada que procesar
+    if not carrito_dict:
+        return JsonResponse(
+          {'status': 'error', 'message': 'El carrito está vacío'}, status=400
+      )
 
-  # 1. Calculamos el total
-  total = sum(item['acumulado'] for item in carrito_dict.values())
+    # Calculamos el total
+    total = sum(item['acumulado'] for item in carrito_dict.values())
 
-  # 2. Creamos el registro principal en la tabla Pedido
-  pedido = Pedido.objects.create(
-      usuario=request.user, total=total, completado=True
-  )
+    # Leemos los datos enviados por el JavaScript de PayPal
+    body = json.loads(request.body) if request.body else {}
+    paypal_order_id = body.get('orderID', '')
 
-  # 3. Guardamos cada ítem en la tabla DetallePedido
-  for item in carrito_dict.values():
-    producto = Producto.objects.get(id=item['producto_id'])
-    DetallePedido.objects.create(
-        pedido=pedido,
-        producto=producto,
-        precio=item['precio_final'],
-        cantidad=item['cantidad'],
+    # 2. Creamos el registro principal en la tabla Pedido
+    pedido = Pedido.objects.create(
+        usuario=request.user, total=total, completado=True
     )
 
-  # 4. Vaciamos la mochila temporal (sesión)
-  carrito.limpiar()
+   
 
-  # 5. Redirigimos a la pantalla de éxito mandando el ID del pedido
-  return render(request, 'pedidos/exito.html', {'pedido': pedido})
+    # 3. Guardamos cada ítem en la tabla DetallePedido
+    for item in carrito_dict.values():
+        producto = Producto.objects.get(id=item['producto_id'])
+        DetallePedido.objects.create(
+            pedido=pedido,
+            producto=producto,
+            precio=item['precio_final'],
+            cantidad=item['cantidad'],
+        )
+
+    # Vaciamos la mochila temporal (sesión)
+    carrito.limpiar()
+
+    # Respondemos a JavaScript con el ID del nuevo pedido
+    return JsonResponse({'status': 'success', 'pedido_id': pedido.id})
+
+  return redirect('ver_carrito')
 
 
 @login_required(login_url='login')
+def pago_exitoso(request, pedido_id):
+  # Muestra el comprobante final una vez confirmado el pago
+  pedido = get_object_or_404(Pedido, id=pedido_id, usuario=request.user)
+  return render(request, 'pedidos/exito.html', {'pedido': pedido})
+
+@login_required(login_url='login')
 def mis_pedidos(request):
-  # Traemos todos los pedidos que le pertenecen a este usuario logueado
-  pedidos = Pedido.objects.filter(usuario=request.user).order_by('-fecha')
-  return render(request, 'pedidos/mis_pedidos.html', {'pedidos': pedidos})
+    # Traemos todos los pedidos que le pertenecen a este usuario logueado
+    pedidos = Pedido.objects.filter(usuario=request.user).order_by('-fecha')
+    return render(request, 'pedidos/mis_pedidos.html', {'pedidos': pedidos})
 
