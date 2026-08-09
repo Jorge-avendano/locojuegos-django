@@ -1,3 +1,6 @@
+from django.contrib.auth.signals import user_logged_in
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token # Para los tokens en el localstorage
 import json
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -130,6 +133,7 @@ def registro(request):
         if form.is_valid():
             usuario = form.save() # Guarda al usuario en la base de datos de SQLite
             login(request, usuario) # Inicia la sesión automáticamente tras registrarse
+
             return redirect('inicio') # Lo mandamos a la página principal
     else:
         # Si el usuario solo está visitando la página por primera vez
@@ -237,3 +241,14 @@ def mis_pedidos(request):
     pedidos = Pedido.objects.filter(usuario=request.user).order_by('-fecha')
     return render(request, 'pedidos/mis_pedidos.html', {'pedidos': pedidos})
 
+# Esta función se ejecutará AUTOMÁTICAMENTE cada vez que CUALQUIER usuario inicie sesión
+@receiver(user_logged_in)
+def guardar_token_en_sesion(sender, request, user, **kwargs):
+  # 1. Obtiene o crea el token en la BD (para usuarios nuevos y existentes)
+  token, _ = Token.objects.get_or_create(user=user)
+
+  # 2. Asigna el token a la sesión del navegador
+  request.session['api_token'] = token.key
+  request.session.modified = True
+
+  print(f'TOKEN ASIGNADO A {user.username}: {token.key}')

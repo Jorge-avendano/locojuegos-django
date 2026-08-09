@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #Momentaneo para generar los tokens
+    'rest_framework',
+    'rest_framework.authtoken', # Esto activa la tabla de tokens en la BD
     'tienda',
 
     #django-cleanup debe ir al final de todas las apps

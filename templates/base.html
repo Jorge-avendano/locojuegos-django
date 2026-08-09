@@ -236,5 +236,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script src="{% static 'js/index.js' %}"></script>
+
+    {% if user.is_authenticated and request.session.api_token %}
+        <script>
+            // Si el usuario inició sesión, guardamos el Token en el Local Storage
+            localStorage.setItem('token_seguridad', '{{ request.session.api_token }}');
+            console.log(" Token guardado en LocalStorage");
+        </script>
+    {% else %}
+        <script>
+            // Si cierra sesión o no está autenticado, eliminamos el Token
+            localStorage.removeItem('token_seguridad');
+            console.log(" Token eliminado de LocalStorage");
+        </script>
+    {% endif %}
+
 </body>
 </html>
